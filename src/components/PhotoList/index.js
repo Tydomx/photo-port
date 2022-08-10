@@ -131,12 +131,12 @@ const PhotoList = ({ category }) => {
 		// update current photo state using setCurrentPhoto
 		setCurrentPhoto({ ...image, index: i });
 		// to open modal when user has clicked on image
-		setIsModalOpen(true);
+		setIsModalOpen(!isModalOpen);
 	}
 
 	return (
 		<div>
-			{isModalOpen && <Modal currentPhoto={currentPhoto} />}
+			{isModalOpen && (<Modal currentPhoto={currentPhoto} onClose={toggleModal} />)}
 			<div className="flex-row">
 				{currentPhotos.map((image, i) => (
 					<img
