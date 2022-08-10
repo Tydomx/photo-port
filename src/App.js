@@ -16,6 +16,8 @@ function App() {
   ]);
 
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  // setting to false to prevent contact form form showing when a user initially navigates to homepage
+  const [contactSelected, setContactSelected] = useState(false);
 
   return (
     <div>
@@ -23,11 +25,29 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        {/* if contactSelected is false, Gallery/About components should be rendered, if true: ContactForm component is rendered */}
+        {/* if(!contactSelected) {
+            <>
+              <Gallery currentCategory={currentCategory}></Gallery>
+              <About></About>
+            </> 
+          } else {
+              <ContactForm></ContactForm>
+          } */}
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
+
+
       </main>
     </div>
   );
